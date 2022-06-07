@@ -58,6 +58,7 @@ More than [100+](https://github.com/search?p=2&q=hub-mirror-action+%22account_ty
 - `lfs` (optional) Default is false, support [git lfs](https://git-lfs.com/), call `git lfs fetch --all` and `git lfs push --all` to support lfs mirror.
 - `api_timeout` (optional) Default is `60`, sets the timeout for API requests (in seconds). 
   Example usage: `api_timeout: '90'`
+- `dst_visibility` (optional) Default is public. If set to `private`, new creating repo visibility is `private`. If set to `auto`, the visibility of destination repo will be preserved.
 
 ## Scenarios
 
