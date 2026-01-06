@@ -67,18 +67,10 @@ runs:
       with:
         python-version: '3.x'
 
-    - name: Get pip cache dir
-      id: pip-cache
-      run: |
-        echo "dir=$(pip cache dir)" >> $GITHUB_OUTPUT
-        echo "hash=$(python3 -c "import hashlib; print(hashlib.sha256(open('${{ github.action_path }}/hub-mirror/requirements.txt', 'rb').read()).hexdigest())")" >> $GITHUB_OUTPUT
-      shell: bash
-
-    - name: Cache pip packages
-      uses: actions/cache@v4
+    - uses: actions/cache@v4
       with:
-        path: ${{ steps.pip-cache.outputs.dir }}
-        key: ${{ runner.os }}-pip-${{ steps.pip-cache.outputs.hash }}
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
         restore-keys: |
           ${{ runner.os }}-pip-
 
